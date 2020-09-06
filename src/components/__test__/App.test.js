@@ -2,12 +2,15 @@ import React from "react";
 import { shallow } from "enzyme";
 import App from "../App";
 import CommentList from "../CommentList";
+import CommentBox from "../CommentBox";
 
-describe("testing the App Component", () => {
-  const app = shallow(<App />);
+describe("the rendering of the App component", () => {
+  const component = shallow(<App />);
   it("should render CommentList component", () => {
-    const comments = shallow(<CommentList />);
+    expect(component.find(CommentList).length).toEqual(1);
+  });
 
-    expect(app).toHaveHTML("div");
+  it("should render One Instance of CommentBox", () => {
+    expect(component.find(CommentBox).length).toEqual(1);
   });
 });
