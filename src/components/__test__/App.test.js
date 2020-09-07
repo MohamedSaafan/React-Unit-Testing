@@ -5,7 +5,9 @@ import CommentList from "../CommentList";
 import CommentBox from "../CommentBox";
 
 describe("the rendering of the App component", () => {
-  const component = shallow(<App />);
+  let component;
+  beforeEach(() => (component = shallow(<App />)));
+
   it("should render CommentList component", () => {
     expect(component.find(CommentList).length).toEqual(1);
   });
