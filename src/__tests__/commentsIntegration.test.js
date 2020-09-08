@@ -37,13 +37,15 @@ it("can fetch our comments and display them appropriatelly", (done) => {
 
   // Expect to find a list of comments
   // the code below will run before fetch return its value
-  // that's mean that the will not be dispatched yet
-  // so we need to put it inside a setTimeout to put the code below into the eventloop
-  // but we need to put it in which it be after the fetch api in the eventQueue
+  // that's mean that the action that we want to be dispatched will not be dispatched yet
+  // so we need to put it (the assertion that depends on the returning value of the asyncronous call)
+  // inside a setTimeout to put the code below into the eventloop (so that it won't be called before the fetch did its work)
+  // but we need to put (the assertion) in a place  in which (the assertion ) be after the fetch api in the eventQueue
   // but jest will result the test case after the thread is finished
-  // so we need to tell jest that we won't need the result untill the code below ( that we will put in the event Queue is finished)
-  // so jest provide an arguement to the call back of the it called done -by convension-
-  // if it see you call it it will wait untill it is been called
+  // that means that it jest won't read the assertion at all it just terminate and see no assertion , so the result of the test will be (pass)
+  // so we need to tell jest that we won't need the result, untill the code below ( that we will put in the event Queue is finished)
+  // that's why  jest provide an arguement to the call back of the it (function) called "done" (by convension)
+  // if "jest" saw this argument being called in any place inside "it" then jest  will wait untill "done" is been called
 
   setTimeout(() => {
     wrapper.update();
