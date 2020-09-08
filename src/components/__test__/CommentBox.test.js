@@ -6,13 +6,20 @@ import { mount } from "enzyme";
 // when using mount be sure to unmount the element after you ran your tests over it
 
 import CommentBox from "../CommentBox";
-
+import Root from "../../Root";
 describe("testing the CommentBox Component", () => {
   let wrapper;
-  beforeEach(() => (wrapper = mount(<CommentBox />)));
+  beforeEach(
+    () =>
+      (wrapper = mount(
+        <Root>
+          <CommentBox />
+        </Root>
+      ))
+  );
   afterEach(() => wrapper.unmount());
   it("should render a button and a textarea", () => {
-    expect(wrapper.find("button").length).toEqual(1);
+    expect(wrapper.find("button").length).toEqual(2);
     expect(wrapper.find("textarea").length).toEqual(1);
   });
 
